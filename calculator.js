@@ -12,17 +12,13 @@ function checkFirst(e) {
 }
 
 function calculate(e) {
-    
     // get input
     var val = e.target.textContent
-        // can return nodeName, href, id, className 
 
-     // if number, add to temp
+    // if number, add to temp
     if (!isNaN(val) || val ==='.') {
         temp+= val
-        // pushTemp() IDEALLY THESE FUNCTIONS CAN BE CALLED
-        // total()
-        document.getElementById("display").setAttribute("placeholder", temp)
+       display(temp)
     } else {
     // if any symbol other than equals, add temp var to entries, then clear temp, then add current symbol to entries
         switch (val) {
@@ -70,38 +66,35 @@ function calculate(e) {
                 console.log("Error: Your switch statement ran out of options so you hit the default!")
                 break;
             }
-        function pushTemp() {
-            if (temp !== '') {
-                entries.push(temp)
-                temp = '';
-            }
-        }
-
-        function total() {
-            if (entries === []) {
-            }
-            nt = Number(entries[0])
-            for (i =1; i<entries.length; i++) {
-                var nextNum = Number(entries[i+1])
-                var symbol = entries[i];
-                if (symbol === '+') { nt += nextNum; } 
-                else if (symbol === '-') { nt -= nextNum; } 
-                else if (symbol === '*') { nt *= nextNum; } 
-                else if (symbol === '/') { nt /= nextNum; }
-      
-                i++;
-            }
-            display(nt)
-        }
-
-        
-
-        
     }
-    
+// end of calculate()
+}
+
+function pushTemp() {
+    if (temp !== '') {
+        entries.push(temp)
+        console.log(temp)
+        temp = '';
+    }
+}
+
+function total() {
+    if (entries === []) {
+    }
+    nt = Number(entries[0])
+    for (i =1; i<entries.length; i++) {
+        var nextNum = Number(entries[i+1])
+        var symbol = entries[i];
+        if (symbol === '+') { nt += nextNum; } 
+        else if (symbol === '-') { nt -= nextNum; } 
+        else if (symbol === '*') { nt *= nextNum; } 
+        else if (symbol === '/') { nt /= nextNum; }
+
+        i++;
+    }
+    display(nt)
+}
+
 function display(i) {
     document.getElementById("display").setAttribute("placeholder", i)
-}
-    
-// end of calculate()
 }
